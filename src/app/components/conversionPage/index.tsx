@@ -10,7 +10,7 @@ import { useCsv } from '@/app/providers/csv-provider';
 import { useJson } from '@/app/providers/json-provider';
 
 export default function CsvJson() {
-  const { csv, setCsv } = useCsv();
+  const { csv, setCsv, showTable } = useCsv();
   const { json, setJson } = useJson();
 
   const [separator, setSeparator] = React.useState(',');
@@ -76,7 +76,13 @@ export default function CsvJson() {
         setSeparator={setSeparator}
         forceDoubleQuotes={setForceDoubleQuotes}
       />
-      <OutputRenderer csv={csv} setCsv={setCsv} json={json} setJson={setJson} />
+      <OutputRenderer
+        csv={csv}
+        setCsv={setCsv}
+        json={json}
+        setJson={setJson}
+        showTable={showTable}
+      />
     </Flex>
   );
 }

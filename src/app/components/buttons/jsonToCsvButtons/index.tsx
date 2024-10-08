@@ -16,7 +16,7 @@ const JsonToCSVButtons = ({
   downloadCsvFile: () => void;
 }) => {
 
-  const { csv } = useCsv();
+  const { csv, setShowTable, showTable } = useCsv();
   const { json } = useJson();
   const handleDisableConvertButton = () => {
     if (!json) return true;
@@ -61,6 +61,22 @@ const JsonToCSVButtons = ({
           }}
         >
           Force Double Quotes
+        </Checkbox>
+
+        <Checkbox
+          iconColor='white'
+          iconSize='1rem'
+          colorScheme='teal'
+          mt={4}
+          color='teal.700'
+          border={'1px solid teal'}
+          borderRadius={'md'}
+          p={2}
+          onChange={(e) => {
+            setShowTable(e.target.checked);
+          }}
+        >
+          Show Table
         </Checkbox>
 
         <ButtonComponent
