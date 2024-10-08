@@ -8,13 +8,15 @@ const OutputRenderer = ({
   setCsv,
   json,
   setJson,
-  showTable
+  showTable,
+  separator,
 }: {
   csv: string;
   setCsv: (csv: string) => void;
   json: string;
   setJson: (json: string) => void;
   showTable: boolean;
+  separator: string;
 }) => {
   const { isJsonToCsv } = useConversion();
 
@@ -23,7 +25,7 @@ const OutputRenderer = ({
       {isJsonToCsv ? (
         <>
           {!showTable && <CsvOutput csv={csv} setCsv={setCsv} />}{' '}
-          {showTable && <CSVTable csv={csv} />}
+          {showTable && <CSVTable csv={csv} separator={separator} />}
         </>
       ) : (
         <JsonOutput json={json} setJson={setJson} />

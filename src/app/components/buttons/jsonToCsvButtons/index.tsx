@@ -15,8 +15,7 @@ const JsonToCSVButtons = ({
   forceDoubleQuotes: (value: boolean) => void;
   downloadCsvFile: () => void;
 }) => {
-
-  const { csv, setShowTable, showTable } = useCsv();
+  const { csv, setShowTable } = useCsv();
   const { json } = useJson();
   const handleDisableConvertButton = () => {
     if (!json) return true;
@@ -75,6 +74,7 @@ const JsonToCSVButtons = ({
           onChange={(e) => {
             setShowTable(e.target.checked);
           }}
+          isDisabled={!csv}
         >
           Show Table
         </Checkbox>

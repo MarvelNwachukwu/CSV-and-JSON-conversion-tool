@@ -77,6 +77,7 @@ export default function CsvJson() {
         forceDoubleQuotes={setForceDoubleQuotes}
       />
       <OutputRenderer
+        separator={separator}
         csv={csv}
         setCsv={setCsv}
         json={json}

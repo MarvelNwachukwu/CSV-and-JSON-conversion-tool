@@ -8,15 +8,16 @@ import {
   Tr,
 } from '@chakra-ui/react';
 
-const CSVTable = ({ csv }: { csv: string }) => {
+const CSVTable = ({ csv, separator }: { csv: string, separator: string }) => {
   const getHeaders = (csv: string): string[] => {
     if (!csv) return [];
 
     const lines = csv.split('\n');
     if (lines.length === 0) return [];
+    console.log(separator);
 
     const headerLine = lines[0];
-    return headerLine.split(',').map((header) => header.trim());
+    return headerLine.split(separator).map((header) => header.trim());
   };
 
   const getRows = (csv: string): string[][] => {
@@ -24,7 +25,10 @@ const CSVTable = ({ csv }: { csv: string }) => {
 
     const lines = csv.split('\n');
     if (lines.length === 0) return [];
-    const rows = lines.slice(1).map((line) => line.split(',').map((cell) => cell.trim()));
+    console.log(separator);
+    const rows = lines
+      .slice(1)
+      .map((line) => line.split(separator).map((cell) => cell.trim()));
     return rows;
   };
 
