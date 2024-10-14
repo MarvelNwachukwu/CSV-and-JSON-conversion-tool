@@ -37,9 +37,10 @@ const jsonToCsv = (
       const row: string[] = [];
       headerArray.forEach((header) => {
         const keys = header.split('.');
-        let value: any = item;
+        let value: Record<string, unknown> | unknown = item;
         for (const key of keys) {
-          value = value?.[key];
+          // value = value?.[key];
+          value = (value as Record<string, unknown>)?.[key];
           if (value === undefined) break;
         }
         row.push(formatCsvValue(String(value), separator, forceDoubleQuotes));
