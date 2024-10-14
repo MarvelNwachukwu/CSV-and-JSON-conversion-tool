@@ -5,6 +5,10 @@ import { Providers } from './providers/chakra';
 import { ConversionProvider } from './providers/convert-from-to';
 import { CsvProvider } from './providers/csv-provider';
 import { JsonProvider } from './providers/json-provider';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { Analytics } from "@vercel/analytics/react"
+
+import Script from 'next/script';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -32,13 +36,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <Script
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
+        crossOrigin='anonymous'
+      />
+      <Script
+        defer
+        src='https://cloud.umami.is/script.js'
+        data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+      />
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
+      <Analytics />
+
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID as string} />
         <Providers>
           <ConversionProvider>
             <CsvProvider>
-              <JsonProvider>
-                {children}
-              </JsonProvider>
+              <JsonProvider>{children}</JsonProvider>
             </CsvProvider>
           </ConversionProvider>
         </Providers>
