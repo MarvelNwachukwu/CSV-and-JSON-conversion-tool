@@ -1,11 +1,12 @@
+'use client';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import ButtonComponent from './individualButton';
 import ConversionSwitch from '../conversionSwitch';
 import CsvToJsonButtons from './csvToJsonButtons';
 import { useConversion } from '@/app/providers/convert-from-to';
 import JsonToCSVButtons from './jsonToCsvButtons';
-import { useCsv } from "@/app/providers/csv-provider";
-import { useJson } from "@/app/providers/json-provider";
+import { useCsv } from '@/app/providers/csv-provider';
+import { useJson } from '@/app/providers/json-provider';
 
 const ButtonsContainer = ({
   handleConvert,
@@ -19,7 +20,6 @@ const ButtonsContainer = ({
   const { isJsonToCsv } = useConversion();
   const { csv } = useCsv();
   const { json } = useJson();
-
   const downloadCsvFile = () => {
     const blob = new Blob([csv], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
@@ -82,7 +82,7 @@ const ButtonsContainer = ({
               'https://drive.google.com/file/d/1NS8dJsYLp2jqIeryvEzfzILL3PwxosZC/view'
             );
           }}
-          aria-label="Learn more about the developer of this JSON to CSV converter"
+          aria-label='Learn more about the developer of this JSON to CSV converter'
         />
 
         <ButtonComponent
@@ -90,7 +90,7 @@ const ButtonsContainer = ({
           onClick={() => {
             window.open('https://www.buymeacoffee.com/marvelcodes');
           }}
-          aria-label="Support the development of this JSON to Excel converter"
+          aria-label='Support the development of this JSON to Excel converter'
         />
       </Flex>
     </Box>
